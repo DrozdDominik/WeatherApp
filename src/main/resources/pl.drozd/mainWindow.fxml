@@ -8,33 +8,35 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="296.0">
          <children>
             <Label layoutX="97.0" layoutY="14.0" text="Pogoda dla miasta:" />
-            <TextField fx:id="CityLeft" layoutX="14.0" layoutY="42.0" prefHeight="26.0" prefWidth="190.0" promptText="Miasto" />
+            <TextField fx:id="cityLeft" layoutX="14.0" layoutY="42.0" prefHeight="26.0" prefWidth="190.0" promptText="Miasto" />
             <Button layoutX="281.0" layoutY="42.0" mnemonicParsing="false" onAction="#searchButtonLeftAction" text="Szukaj" />
-            <TableView fx:id="weatherTabelLeft" layoutY="142.0" prefHeight="459.0" prefWidth="396.0">
+            <TableView fx:id="weatherTabelLeft" layoutY="142.0" prefHeight="459.0" prefWidth="496.0">
               <columns>
-                <TableColumn fx:id="DataColLeft" prefWidth="75.0" text="Data" />
-                <TableColumn fx:id="TemperatureColLeft" prefWidth="117.60003662109375" text="Temperatura" />
-                  <TableColumn fx:id="DescriptionColLeft" prefWidth="203.19996643066406" text="Warunki pogodowe" />
+                <TableColumn fx:id="dateColLeft" prefWidth="109.59999996423721" text="Data" />
+                <TableColumn fx:id="temperatureColLeft" prefWidth="106.39996337890625" text="Temperatura" />
+                  <TableColumn fx:id="descriptionColLeft" prefWidth="280.8000793457031" text="Warunki pogodowe" />
               </columns>
             </TableView>
+            <Label fx:id="errorLabelLeft" layoutX="14.0" layoutY="80.0" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="500.0">
          <children>
             <Label layoutX="97.0" layoutY="14.0" text="Pogoda dla miasta:" />
-            <TextField fx:id="CityRight" layoutX="14.0" layoutY="52.0" prefHeight="26.0" prefWidth="190.0" promptText="Miasto" />
-            <Button layoutX="279.0" layoutY="52.0" mnemonicParsing="false" onAction="#searchButtonRightAction" text="Szukaj" />
-            <TableView fx:id="WeatherTableRight" layoutX="1.0" layoutY="144.0" prefHeight="453.0" prefWidth="396.0">
+            <TextField fx:id="cityRight" layoutX="14.0" layoutY="39.0" prefHeight="26.0" prefWidth="190.0" promptText="Miasto" />
+            <Button layoutX="279.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchButtonRightAction" text="Szukaj" />
+            <TableView fx:id="weatherTableRight" layoutX="1.0" layoutY="144.0" prefHeight="454.0" prefWidth="496.0">
               <columns>
-                <TableColumn fx:id="DataColRight" prefWidth="75.0" text="Data" />
-                <TableColumn fx:id="TemperatureColRight" prefWidth="112.0" text="Temperatra" />
-                  <TableColumn fx:id="DescriptionColRight" prefWidth="208.7999725341797" text="Warunki pogodowe" />
+                <TableColumn fx:id="dateColRight" prefWidth="117.60003972053528" text="Data" />
+                <TableColumn fx:id="temperatureColRight" prefWidth="107.2000732421875" text="Temperatra" />
+                  <TableColumn fx:id="descriptionColRight" prefWidth="268.80003356933594" text="Warunki pogodowe" />
               </columns>
             </TableView>
+            <Label fx:id="errorLabelRight" layoutX="14.0" layoutY="90.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>
