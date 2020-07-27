@@ -1,54 +1,123 @@
 package pl.drozd.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import pl.drozd.model.WeatherForecast;
 import pl.drozd.view.ViewFactory;
+
+import java.io.IOException;
 
 public class MainWindowController extends BaseController {
 
     @FXML
-    private TextField CityLeft;
+    private TextField cityLeft;
 
     @FXML
-    private TableView<?> weatherTabelLeft;
+    private TableView<WeatherForecast> weatherTabelLeft;
 
     @FXML
-    private TableColumn<?, ?> DataColLeft;
+    private TableColumn<WeatherForecast, String> dateColLeft;
 
     @FXML
-    private TableColumn<?, ?> TemperatureColLeft;
+    private TableColumn<WeatherForecast, String> temperatureColLeft;
 
     @FXML
-    private TableColumn<?, ?> DescriptionColLeft;
+    private TableColumn<WeatherForecast, String> descriptionColLeft;
 
     @FXML
-    private TextField CityRight;
+    private Label errorLabelLeft;
 
     @FXML
-    private TableView<?> WeatherTableRight;
+    private TextField cityRight;
 
     @FXML
-    private TableColumn<?, ?> DataColRight;
+    private TableView<WeatherForecast> weatherTableRight;
 
     @FXML
-    private TableColumn<?, ?> TemperatureColRight;
+    private TableColumn<WeatherForecast, String> dateColRight;
 
     @FXML
-    private TableColumn<?, ?> DescriptionColRight;
+    private TableColumn<WeatherForecast, String> temperatureColRight;
 
     @FXML
-    void searchButtonLeftAction() {
+    private TableColumn<WeatherForecast, String> descriptionColRight;
 
+    @FXML
+    private Label errorLabelRight;
+
+    @FXML
+    void searchButtonLeftAction() throws IOException {
+        if(CityNameIsValid(cityLeft.getText().isEmpty())){
+            errorLabelLeft.setText("");
+            cityLeftWeatherForecast.clear();
+            dateColLeft.setCellValueFactory(cellData ->cellData.getValue().getDate());
+            temperatureColLeft.setCellValueFactory(cellData ->  cellData.getValue().getTemperatureForSpecificDay());
+            descriptionColLeft.setCellValueFactory(cellData -> cellData.getValue().getDescription());
+            try {
+                getDataAboutWeather(cityLeftWeatherForecast, cityLeft.getText());
+                weatherTabelLeft.setItems(cityLeftWeatherForecast);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            errorLabelLeft.setText("Podaj nazwę miasta");
+        }
     }
 
     @FXML
-    void searchButtonRightAction() {
-
+    void searchButtonRightAction() throws IOException {
+        if(CityNameIsValid(cityRight.getText().isEmpty())){
+            errorLabelRight.setText("");
+            cityRightWeatherForecast.clear();
+            dateColRight.setCellValueFactory(cellData ->cellData.getValue().getDate());
+            temperatureColRight.setCellValueFactory(cellData ->  cellData.getValue().getTemperatureForSpecificDay());
+            descriptionColRight.setCellValueFactory(cellData -> cellData.getValue().getDescription());
+            try {
+                getDataAboutWeather(cityRightWeatherForecast, cityRight.getText());
+                weatherTableRight.setItems(cityRightWeatherForecast);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            errorLabelRight.setText("Podaj nazwę miasta");
+        }
     }
+
+    private ObservableList<WeatherForecast> cityLeftWeatherForecast;
+    private ObservableList<WeatherForecast> cityRightWeatherForecast;
+    private int daysFromToday = 0;
 
     public MainWindowController(ViewFactory viewFactory, String fxmlName) {
+
         super(viewFactory, fxmlName);
+        cityLeftWeatherForecast = FXCollections.observableArrayList();
+        cityRightWeatherForecast = FXCollections.observableArrayList();
+    }
+
+    private boolean CityNameIsValid(boolean cityName) {
+        if(cityName) {
+            return false;
+        }
+        return true;
+    }
+
+    private void getDataAboutWeather(ObservableList<WeatherForecast> weatherForecast, String cityName) throws IOException {
+        for(int i = 0 ; i <= 7 ; i++){
+            WeatherForecast cityWeather = new WeatherForecast(cityName);
+            cityWeather.getWeather(i);
+            if(cityWeather.getJsonDataCorrect()){
+                weatherForecast.add(cityWeather);
+            }
+            else{
+                errorLabelRight.setText("Błąd w nazwie miasta!");
+            }
+        }
     }
 }
