@@ -10,7 +10,7 @@
 
 <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="296.0">
+    <AnchorPane fx:id="leftAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="296.0">
          <children>
             <Label layoutX="97.0" layoutY="14.0" text="Pogoda dla miasta:" />
             <TextField fx:id="cityLeft" layoutX="14.0" layoutY="42.0" prefHeight="26.0" prefWidth="190.0" promptText="Miasto" />
@@ -24,7 +24,7 @@
             </TableView>
             <Label fx:id="errorLabelLeft" layoutX="14.0" layoutY="80.0" />
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="500.0">
+    <AnchorPane fx:id="rightAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="500.0">
          <children>
             <Label layoutX="97.0" layoutY="14.0" text="Pogoda dla miasta:" />
             <TextField fx:id="cityRight" layoutX="14.0" layoutY="39.0" prefHeight="26.0" prefWidth="190.0" promptText="Miasto" />

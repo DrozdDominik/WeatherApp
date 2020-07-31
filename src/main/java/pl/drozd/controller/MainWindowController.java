@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import pl.drozd.model.WeatherForecast;
 import pl.drozd.util.Errors;
 import pl.drozd.view.ViewFactory;
@@ -14,6 +15,9 @@ import pl.drozd.view.ViewFactory;
 import java.io.IOException;
 
 public class MainWindowController extends BaseController {
+
+    @FXML
+    private AnchorPane leftAnchorPane;
 
     @FXML
     private TextField cityLeft;
@@ -32,6 +36,9 @@ public class MainWindowController extends BaseController {
 
     @FXML
     private Label errorLabelLeft;
+
+    @FXML
+    private AnchorPane rightAnchorPane;
 
     @FXML
     private TextField cityRight;
