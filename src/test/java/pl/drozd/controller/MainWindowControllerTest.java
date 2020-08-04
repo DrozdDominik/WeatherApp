@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.testfx.framework.junit5.ApplicationTest;
 import pl.drozd.view.ViewFactory;
 
+
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.util.NodeQueryUtils.hasText;
 
@@ -30,6 +31,7 @@ public class MainWindowControllerTest extends ApplicationTest{
         rightCity = lookup("#rightAnchorPane").lookup("#cityRight").query();
         leftCity.clear();
         rightCity.clear();
+
     }
 
 
@@ -95,4 +97,5 @@ public class MainWindowControllerTest extends ApplicationTest{
         //then
         verifyThat("#errorLabelRight", hasText("Błąd w nazwie miasta!"));
     }
+
 }
